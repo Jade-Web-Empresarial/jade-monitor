@@ -1,0 +1,52 @@
+name: Vigilancia
+
+# Revisa los servicios publicos de Jade cada 10 minutos. Si alguno falla, el job falla y GitHub avisa por correo.
+# El repositorio es publico a proposito: en repos publicos los minutos de Actions son ilimitados.
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+    # Latido semanal (lunes): un commit del bot evita que GitHub desactive los workflows programados tras 60 dias sin actividad
+    - cron: '17 6 * * 1'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['monitor.mjs', 'monitor.test.mjs', 'targets.json', '.github/workflows/vigilancia.yml']
+
+permissions:
+  contents: read
+
+jobs:
+  vigilar:
+    # En el disparo del latido solo corre el job "latido"
+    if: github.event.schedule != '17 6 * * 1'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    concurrency:
+      group: vigilancia
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Pruebas del script
+        run: node --test
+      - name: Comprobar los servicios
+        run: node monitor.mjs
+
+  latido:
+    if: github.event.schedule == '17 6 * * 1'
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Registrar el latido
+        run: |
+          date -u +"%Y-%m-%dT%H:%M:%SZ" > latido.txt
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add latido.txt
+          git commit -m "chore: latido semanal (mantiene activos los workflows programados)"
+          git push
