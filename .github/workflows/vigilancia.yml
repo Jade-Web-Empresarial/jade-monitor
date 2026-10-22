@@ -1,10 +1,10 @@
 name: Vigilancia
 
-# Revisa los servicios publicos de Jade cada 10 minutos. Si alguno falla, el job falla y GitHub avisa por correo.
+# Revisa los servicios publicos de Jade cada 10 minutos (en los minutos 4, 14, 24... para evitar las horas punta de GitHub). Si alguno falla, el job falla y GitHub avisa por correo.
 # El repositorio es publico a proposito: en repos publicos los minutos de Actions son ilimitados.
 on:
   schedule:
-    - cron: '*/10 * * * *'
+    - cron: '4,14,24,34,44,54 * * * *'
     # Latido semanal (lunes): un commit del bot evita que GitHub desactive los workflows programados tras 60 dias sin actividad
     - cron: '17 6 * * 1'
   workflow_dispatch:

@@ -4,7 +4,7 @@ Vigilancia de caídas de la plataforma de Jade. Corre **fuera del servidor** (en
 
 ## Qué hace
 
-Cada **10 minutos** revisa los servicios de `targets.json`:
+Cada **10 minutos** (en los minutos 4, 14, 24... para evitar las horas punta de GitHub) revisa los servicios de `targets.json`:
 
 | Servicio | Qué se comprueba |
 |---|---|
