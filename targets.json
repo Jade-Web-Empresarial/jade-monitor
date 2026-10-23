@@ -1,20 +1,20 @@
 [
   {
     "name": "API (salud y base de datos)",
-    "url": "https://api.62-238-107-225.sslip.io/api/v1/health",
+    "url": "https://api.jadetechesgroup.com/api/v1/health",
     "expectBody": "\"status\":\"ok\""
   },
   {
     "name": "Web (portada)",
-    "url": "https://web.62-238-107-225.sslip.io/es",
+    "url": "https://web.jadetechesgroup.com/es",
     "expectBody": "<title>"
   },
   {
     "name": "Panel de administracion",
-    "url": "https://admin.62-238-107-225.sslip.io/"
+    "url": "https://admin.jadetechesgroup.com/"
   },
   {
     "name": "Archivos (MinIO)",
-    "url": "https://files.62-238-107-225.sslip.io/minio/health/live"
+    "url": "https://files.jadetechesgroup.com/minio/health/live"
   }
 ]

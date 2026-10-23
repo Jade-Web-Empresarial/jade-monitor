@@ -42,7 +42,7 @@ Edita `targets.json` (lista de objetos). Campos:
 | `tlsDaysMin` | no | `14` | Días mínimos de vida del certificado |
 | `attempts` / `retryDelayMs` / `timeoutMs` | no | `3` / `10000` / `15000` | Reintentos y tiempo de espera |
 
-**Al pasar a producción:** cambia los cuatro dominios de `targets.json` por los definitivos y haz commit. Nada más.
+Los dominios de `targets.json` son los definitivos (`*.jadetechesgroup.com`). Si cambian, edita ese archivo y haz commit.
 
 ## Probarlo en tu PC
 
