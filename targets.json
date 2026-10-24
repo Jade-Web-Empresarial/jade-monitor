@@ -6,7 +6,7 @@
   },
   {
     "name": "Web (portada)",
-    "url": "https://web.jadetechesgroup.com/es",
+    "url": "https://jadetechesgroup.com/es",
     "expectBody": "<title>"
   },
   {
